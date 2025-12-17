@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>HEY Mrs Seikh ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin:0;
+    font-family:'Poppins', sans-serif;
+    background:linear-gradient(135deg,#ff5f9e,#ffc371);
+    color:white;
+    text-align:center;
+}
+
+h1, h2 { font-family:'Playfair Display', serif; }
+
+.container {
+    padding:25px;
+    max-width:900px;
+    margin:auto;
+}
+
+h1 { font-size:2.6rem; }
+h2 { font-weight:500; }
+
+.emoji {
+    font-size:70px;
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%{transform:scale(1)}
+    50%{transform:scale(1.2)}
+    100%{transform:scale(1)}
+}
+
+.box {
+    background:rgba(255,255,255,0.22);
+    padding:25px;
+    border-radius:20px;
+    margin:20px 0;
+    font-size:1.05rem;
+    line-height:1.9;
+    text-align:left;
+}
+
+.center { text-align:center; }
+
+button {
+    background:white;
+    color:#ff4d88;
+    border:none;
+    padding:16px 32px;
+    border-radius:40px;
+    font-size:1.05rem;
+    cursor:pointer;
+    margin:15px;
+}
+
+.hidden { display:none; }
+
+/* 🌸 SIDE-WISE SLIDESHOW (ONLY UPDATED PART) */
+.slideshow {
+    width: 100%;
+    max-width: 360px;        /* medium size for mobile */
+    margin: 30px auto;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+.slides {
+    display: flex;
+    transition: transform 1s ease-in-out;
+}
+
+.slides img {
+    width: 100%;
+    flex-shrink: 0;
+    border-radius: 20px;
+}
+
+/* Desktop adjustment */
+@media (min-width: 768px) {
+    .slideshow {
+        max-width: 450px;
+    }
+}
+
+footer {
+    margin-top:40px;
+    font-size:1.05rem;
+    font-family:'Playfair Display', serif;
+}
+
+/* 🎈 BALLOONS (UNCHANGED) */
+.balloon {
+    position:fixed;
+    bottom:-100px;
+    font-size:40px;
+    animation:floatUp 6s linear forwards;
+}
+
+@keyframes floatUp {
+    0% { transform:translateY(0); opacity:1; }
+    100% { transform:translateY(-120vh); opacity:0; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎶 FIRST SONG -->
+<audio id="musicStart" preload="auto">
+  <source src="happy-birthday-254480.mp3" type="audio/mpeg">
+</audio>
+
+<!-- 🎶 SECOND SONG -->
+<audio id="musicRomantic" preload="auto">
+  <source src="vol-1-timeless-romance-288068.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+
+<div id="heartSection">
+    <div class="emoji">❤️</div>
+    <h1>HEY Mrs Seikh ❤️</h1>
+    <h2>Tap the heart</h2>
+    <button onclick="openSurprise()">❤️ Open</button>
+</div>
+
+<div id="mainContent" class="hidden">
+
+<div class="emoji">🎂</div>
+<h1>HEY Mrs Seikh ❤️</h1>
+<h2>Happy 22nd Birthday</h2>
+
+<!-- 🌸 SIDE SLIDESHOW -->
+<div class="slideshow">
+    <div class="slides" id="slides">
+        <img src="her.jpg">
+        <img src="her-2.jpg">
+        <img src="her-3.jpg">
+        <img src="her-4.jpg">
+        <img src="her-5.jpg">
+        <img src="her-6.jpg">
+        <img src="her-7.jpg">
+    </div>
+</div>
+
+<div class="box center">
+My love,<br><br>
+Today you turn <b>22</b>, and the world feels more beautiful because you are in it 🤍
+</div>
+
+<button onclick="playRomantic()">🎶 Play Romantic Music</button>
+<button onclick="openHeart()">🤍 From My Heart</button>
+<button onclick="openPromise()">🤝 My Promise</button>
+
+<div id="heartMsg" class="box hidden">
+Life সবসময় easy হয় না, আর আমরা দুজনেই সেটা খুব কাছ থেকে দেখেছি।  
+ভালো সময় যেমন ছিল, তেমনই অনেক tough phase-ও গেছে।  
+কিন্তু সব কিছুর মাঝেই তুমি আমার পাশে থেকেছ, strong হয়ে 🤍<br><br>
+<strong>আমি আছি। আজ, কাল, আর সব আগামীর দিনেও</strong> 🤝
+</div>
+
+<div id="promiseMsg" class="box hidden center">
+No matter what life brings,<br>
+I choose you — every single day ❤️
+</div>
+
+<footer>
+With endless love,<br>
+<strong>— Mr. ❤️</strong>
+</footer>
+
+</div>
+</div>
+
+<script>
+let balloonInterval;
+
+/* OPEN SURPRISE */
+function openSurprise(){
+    document.getElementById("heartSection").style.display="none";
+    document.getElementById("mainContent").style.display="block";
+    document.getElementById("musicStart").play().catch(()=>{});
+    startBalloons();
+}
+
+/* SWITCH MUSIC */
+function playRomantic(){
+    const start=document.getElementById("musicStart");
+    const romantic=document.getElementById("musicRomantic");
+    start.pause();
+    start.currentTime=0;
+    romantic.play().catch(()=>{});
+}
+
+function openHeart(){
+    document.getElementById("heartMsg").style.display="block";
+}
+
+function openPromise(){
+    document.getElementById("promiseMsg").style.display="block";
+}
+
+/* 🎈 CONTINUOUS BALLOONS */
+function startBalloons(){
+    balloonInterval=setInterval(()=>{
+        const emojis=["🎈","🎉","❤️","🎂"];
+        for(let i=0;i<3;i++){
+            let b=document.createElement("div");
+            b.className="balloon";
+            b.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+            b.style.left=Math.random()*100+"%";
+            b.style.animationDuration=(4+Math.random()*3)+"s";
+            document.body.appendChild(b);
+            setTimeout(()=>b.remove(),7000);
+        }
+    },800);
+}
+
+/* 🌸 SIDE SLIDESHOW LOGIC */
+let index = 0;
+setInterval(() => {
+    const slides = document.getElementById("slides");
+    index = (index + 1) % slides.children.length;
+    slides.style.transform = `translateX(-${index * 100}%)`;
+}, 3000);
+</script>
+
+</body>
+</html>
